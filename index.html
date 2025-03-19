@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro-to-Pro - Your Productivity Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h1>Pro-to-Pro</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-section="tasks"><i class="fas fa-tasks"></i> Tasks</li>
+                <li data-section="pomodoro"><i class="fas fa-clock"></i> Pomodoro</li>
+                <li data-section="analytics"><i class="fas fa-chart-bar"></i> Analytics</li>
+                <li data-section="diary"><i class="fas fa-book"></i> Diary</li>
+                <li data-section="badges"><i class="fas fa-trophy"></i> Badges</li>
+                <li data-section="chatbot"><i class="fas fa-robot"></i> AI Assistant</li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <!-- Tasks Section -->
+            <section id="tasks" class="section active">
+                <h2>Task Management</h2>
+                <div class="task-input">
+                    <input type="text" id="taskInput" placeholder="Add a new task...">
+                    <input type="datetime-local" id="taskDeadline">
+                    <button id="addTask">Add Task</button>
+                </div>
+                <div class="task-list" id="taskList"></div>
+            </section>
+
+            <!-- Pomodoro Section -->
+            <section id="pomodoro" class="section">
+                <h2>Pomodoro Timer</h2>
+                <div class="pomodoro-container">
+                    <div class="timer-display">
+                        <span id="minutes">25</span>:<span id="seconds">00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="startTimer">Start</button>
+                        <button id="pauseTimer">Pause</button>
+                        <button id="resetTimer">Reset</button>
+                    </div>
+                    <div class="timer-mode">
+                        <button class="active" data-time="25">Work</button>
+                        <button data-time="5">Short Break</button>
+                        <button data-time="15">Long Break</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="section">
+                <h2>Progress Analytics</h2>
+                <div class="analytics-container">
+                    <div class="chart-container">
+                        <canvas id="taskCompletionChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="productivityChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diary Section -->
+            <section id="diary" class="section">
+                <h2>Daily Reflection</h2>
+                <div class="diary-container">
+                    <div class="diary-input">
+                        <textarea id="diaryEntry" placeholder="Write your thoughts for today..."></textarea>
+                        <button id="saveDiary">Save Entry</button>
+                    </div>
+                    <div class="diary-entries" id="diaryEntries"></div>
+                </div>
+            </section>
+
+            <!-- Badges Section -->
+            <section id="badges" class="section">
+                <h2>Your Achievements</h2>
+                <div class="badges-container" id="badgesContainer"></div>
+            </section>
+
+            <!-- Chatbot Section -->
+            <section id="chatbot" class="section">
+                <h2>AI Assistant</h2>
+                <div class="chatbot-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot">
+                            <div class="message-content">
+                                Hello! I'm your AI productivity assistant. How can I help you today?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Type your message...">
+                        <button id="sendMessage">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
