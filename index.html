@@ -29,29 +29,77 @@
             <section id="tasks" class="section active">
                 <h2>Task Management</h2>
                 <div class="task-input">
-                    <input type="text" id="taskInput" placeholder="Add a new task...">
-                    <input type="datetime-local" id="taskDeadline">
-                    <button id="addTask">Add Task</button>
+                    <div class="task-input-group">
+                        <input type="text" id="taskInput" placeholder="Add a new task...">
+                        <select id="taskPriority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <select id="taskCategory">
+                            <option value="work">Work</option>
+                            <option value="study">Study</option>
+                            <option value="health">Health</option>
+                            <option value="personal">Personal</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="number" id="taskEstimate" placeholder="Est. time (min)" min="1">
+                        <input type="datetime-local" id="taskDeadline">
+                        <button id="addTask" class="add-task-btn">
+                            <i class="fas fa-plus"></i> Add Task
+                        </button>
+                    </div>
+                    <div class="productivity-methods">
+                        <h3>Productivity Method</h3>
+                        <div class="method-toggles">
+                            <button class="method-btn active" data-method="pomodoro">
+                                <i class="fas fa-clock"></i> Pomodoro
+                            </button>
+                            <button class="method-btn" data-method="time-tracking">
+                                <i class="fas fa-hourglass-half"></i> Time Tracking
+                            </button>
+                            <button class="method-btn" data-method="task-batching">
+                                <i class="fas fa-layer-group"></i> Task Batching
+                            </button>
+                            <button class="method-btn" data-method="pareto">
+                                <i class="fas fa-chart-pie"></i> 80/20 Rule
+                            </button>
+                            <button class="method-btn" data-method="eat-frog">
+                                <i class="fas fa-frog"></i> Eat the Frog
+                            </button>
+                            <button class="method-btn" data-method="gtd">
+                                <i class="fas fa-check-circle"></i> GTD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="task-filters">
+                    <button class="filter-btn active" data-filter="all">All Tasks</button>
+                    <button class="filter-btn" data-filter="high">High Priority</button>
+                    <button class="filter-btn" data-filter="medium">Medium Priority</button>
+                    <button class="filter-btn" data-filter="low">Low Priority</button>
+                    <button class="filter-btn" data-filter="today">Today's Tasks</button>
                 </div>
                 <div class="task-list" id="taskList"></div>
             </section>
 
             <!-- Pomodoro Section -->
             <section id="pomodoro" class="section">
-                <h2>Pomodoro Timer</h2>
                 <div class="pomodoro-container">
+                    <h2>Pomodoro Timer</h2>
                     <div class="timer-display">
-                        <span id="minutes">25</span>:<span id="seconds">00</span>
+                        <div id="timerDisplay">25:00</div>
                     </div>
                     <div class="timer-controls">
-                        <button id="startTimer">Start</button>
-                        <button id="pauseTimer">Pause</button>
-                        <button id="resetTimer">Reset</button>
-                    </div>
-                    <div class="timer-mode">
-                        <button class="active" data-time="25">Work</button>
-                        <button data-time="5">Short Break</button>
-                        <button data-time="15">Long Break</button>
+                        <button id="startTimer" class="timer-button">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button id="pauseTimer" class="timer-button" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button id="resetTimer" class="timer-button">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
                     </div>
                 </div>
             </section>
@@ -66,6 +114,31 @@
                     <div class="chart-container">
                         <canvas id="productivityChart"></canvas>
                     </div>
+                    <div class="ai-insights-container">
+                        <h3>AI-Powered Insights</h3>
+                        <div class="insights-grid">
+                            <div class="insight-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>Performance Trends</h4>
+                                <div id="performanceTrends"></div>
+                            </div>
+                            <div class="insight-card">
+                                <i class="fas fa-clock"></i>
+                                <h4>Peak Productivity Hours</h4>
+                                <div id="peakHours"></div>
+                            </div>
+                            <div class="insight-card">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h4>Procrastination Patterns</h4>
+                                <div id="procrastinationPatterns"></div>
+                            </div>
+                            <div class="insight-card">
+                                <i class="fas fa-lightbulb"></i>
+                                <h4>AI Recommendations</h4>
+                                <div id="aiRecommendations"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -74,10 +147,51 @@
                 <h2>Daily Reflection</h2>
                 <div class="diary-container">
                     <div class="diary-input">
+                        <div class="diary-header">
+                            <div class="mood-selector">
+                                <h4>How are you feeling today?</h4>
+                                <div class="mood-buttons">
+                                    <button class="mood-btn" data-mood="happy">😊</button>
+                                    <button class="mood-btn" data-mood="neutral">😐</button>
+                                    <button class="mood-btn" data-mood="sad">😢</button>
+                                    <button class="mood-btn" data-mood="angry">😠</button>
+                                    <button class="mood-btn" data-mood="excited">🤩</button>
+                                </div>
+                            </div>
+                            <div class="productivity-rating">
+                                <h4>Productivity Level</h4>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ai-prompts">
+                            <h4>Reflection Prompts</h4>
+                            <div id="reflectionPrompts"></div>
+                        </div>
                         <textarea id="diaryEntry" placeholder="Write your thoughts for today..."></textarea>
-                        <button id="saveDiary">Save Entry</button>
+                        <div class="diary-actions">
+                            <button id="saveDiary" class="primary-btn">
+                                <i class="fas fa-save"></i> Save Entry
+                            </button>
+                            <button id="addMedia" class="secondary-btn">
+                                <i class="fas fa-image"></i> Add Media
+                            </button>
+                        </div>
                     </div>
-                    <div class="diary-entries" id="diaryEntries"></div>
+                    <div class="diary-entries" id="diaryEntries">
+                        <div class="diary-filters">
+                            <button class="filter-btn active" data-filter="all">All Entries</button>
+                            <button class="filter-btn" data-filter="happy">Happy Days</button>
+                            <button class="filter-btn" data-filter="productive">Productive Days</button>
+                            <button class="filter-btn" data-filter="recent">Recent</button>
+                        </div>
+                        <div class="entries-list"></div>
+                    </div>
                 </div>
             </section>
 
